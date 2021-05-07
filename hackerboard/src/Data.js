@@ -1,5 +1,5 @@
 import {v4 as uuidv4} from "uuid";
-let uuidArray=[uuidv4(),uuidv4(),uuidv4(),uuidv4];
+let uuidArray=[uuidv4(),uuidv4(),uuidv4(),uuidv4()];
 let initialFeeds={
      
     [uuidArray[0]] : 
@@ -43,7 +43,7 @@ let initialFeeds={
     },
     [uuidArray[3]] :
     {
-      header: "Hacker Noon",
+      header: "Feminism",
       project_manager: "Feminist Priya",
       id: uuidArray[3],
       creationDate: "11/5/21",
@@ -56,18 +56,27 @@ let initialFeeds={
     
 
 };
-function feedItemGenerate(header,project_manager,id,creationDate,startTime,endTime,location,participants,status){
+//header,project_manager,id,creationDate,startTime,endTime,location,participants,status,feedItems)
+function feedItemGenerate(feedItems = {}, ...rest){
+    
+   
+    // let obj= Object.keys(feedItems).length === 0 ? initialFeeds : feedItems; 
+    if(rest?.length === 0) return initialFeeds;
+   
     return{
-        ...initialFeed,
-        header,
-        project_manager,
-        id,
-        creationDate,
-        startTime,
-        endTime,
-        location,
-        participants,
-        status
+        ...feedItems,
+        [rest[2]]:{
+        header: rest[0],
+        project_manager: rest[1] ,
+        id: rest[2],
+        creationDate: rest[3],
+        startTime:rest[4],
+        endTime:rest[5],
+        location:rest[6],
+        participants:rest[7],
+        status:rest[8]
+        }
+
     }
 
 
